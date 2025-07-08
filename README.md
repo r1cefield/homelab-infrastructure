@@ -1,93 +1,109 @@
 # homelab-infrastructure
 
 
+# 🏗️ Overview
+This repository documents my production-grade homelab infrastructure which implements enterprise networking, security, and automation practices. 
+The setup demostrastes my practices in:
 
-## Getting started
+- **Network Engineering**: VLAN segmentation with pfSense routing
+- **Virtualization**: Proxmox hypervisor with VM management
+- **Container Orchestration**: Docker with custom networking
+- **Security**: Zero-trust networking with Tailscale WireGuard VPN
+- **Automation**: Infrastructure as Code and CI/CD principles
+- **Service Management**: Self-hosted applications with reverse proxy
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+## 🛠️ Technology Stack
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
+### Core Infrastructure
+- **Hypervisor**: Proxmox VE on PN52 Ubuntu Server
+- **Network OS**: pfSense (virtualized router/firewall)
+- **Container Runtime**: Docker with custom bridge networks
+- **Remote Access**: Tailscale subnet routing with WireGuard
 
-## Add your files
+### Network Architecture
+- **Management Network**: VLAN 100 (192.168.100.0/24)
+- **Storage Network**: VLAN 200 (10.0.0.0/24)  
+- **Docker Network**: Custom bridge (172.20.0.0/24)
+- **Physical Switch**: Cisco 2960-L with VLAN configuration
 
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/topics/git/add_files/#add-files-to-a-git-repository) or push an existing Git repository with the following command:
+### Self-Hosted Services
+- **Reverse Proxy**: Nginx Proxy Manager with automated SSL
+- **Container Management**: Portainer for Docker orchestration
+- **Version Control**: GitLab CE (this instance!)
+- **Network Storage**: Synology NAS with automated backups
+
+## 🚀 Key Achievements
+
+- ✅ **Secure Remote Access**: Tailscale subnet routing from anywhere
+- ✅ **Zero-Downtime Services**: Docker health checks and restart policies
+- ✅ **Automated SSL**: Wildcard certificates with automatic renewal
+- ✅ **Network Segmentation**: Proper VLAN isolation with inter-VLAN routing
+- ✅ **Infrastructure Documentation**: Living documentation with architecture diagrams
+- ✅ **Backup Strategy**: Automated backups across VLANs
+
+## 📊 Network Topology
 
 ```
-cd existing_repo
-git remote add origin http://gitlab.homelab.local/r1cefield/homelab-infrastructure.git
-git branch -M main
-git push -uf origin main
+Internet
+    ↓
+[Main Router] ←→ [Cisco Switch]
+    ↓                ↓
+VLAN 100         VLAN 200
+    ↓                ↓
+[Proxmox] ←→ [Synology NAS]
+    ↓
+[pfSense VM] ←→ [Docker Services]
+    ↓
+[Tailscale Gateway]
 ```
 
-## Integrate with your tools
+## 📋 Skills Demonstrated
 
-- [ ] [Set up project integrations](http://gitlab.homelab.local/r1cefield/homelab-infrastructure/-/settings/integrations)
+### Networking & Security
+- VLAN configuration and inter-VLAN routing
+- Firewall rule design and implementation
+- VPN implementation with subnet advertisement
+- SSL/TLS certificate management
+- Network troubleshooting and optimization
 
-## Collaborate with your team
+### Systems & Virtualization
+- Linux server administration (Ubuntu)
+- Hypervisor management (Proxmox)
+- Virtual machine deployment and configuration
+- Container orchestration with Docker
+- Service discovery and reverse proxy setup
 
-- [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-- [ ] [Set auto-merge](https://docs.gitlab.com/user/project/merge_requests/auto_merge/)
+### DevOps & Automation
+- Infrastructure documentation practices
+- Version control with self-hosted GitLab
+- Container deployment strategies
+- Backup automation and disaster recovery
+- Monitoring and health check implementation
 
-## Test and Deploy
+## 🔍 Repository Structure
 
-Use the built-in continuous integration in GitLab.
+- `docs/` - Comprehensive infrastructure documentation
+- `configs/` - Sanitized configuration files and templates
+- `scripts/` - Automation scripts and deployment tools
+- `diagrams/` - Network topology and architecture diagrams
 
-- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing (SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-- [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
+## 📈 Current Status
 
-***
+- ✅ Core infrastructure operational
+- ✅ Remote access via Tailscale configured
+- ✅ Docker services deployed and accessible
+- 🔄 Documentation in progress
+- 📋 Monitoring and automation planned
 
-# Editing this README
+## 🛠️ Quick Access
 
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thanks to [makeareadme.com](https://www.makeareadme.com/) for this template.
+- **GitLab**: https://gitlab.homelab.local
+- **Portainer**: https://portainer.homelab.local  
+- **Nginx Proxy Manager**: https://nginx.homelab.local
 
-## Suggestions for a good README
+---
 
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
+> **Note**: This homelab demonstrates enterprise-grade practices adapted for a home environment. All configurations follow security best practices and are documented for educational and professional development purposes.
 
-## Name
-Choose a self-explaining name for your project.
-
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
-
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
-
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
-
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
-
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
-
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
-
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
-
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
-
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
-
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
-
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
-
-## License
-For open source projects, say how it is licensed.
-
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+**Last Updated**: July 2025
+```
