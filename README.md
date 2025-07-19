@@ -1,109 +1,46 @@
-# homelab-infrastructure
+# My Homelab Setup
+
+This repository contains the documentation and configuration of my production-grade homelab infrastructure. It is designed with a focus on enterprise-level networking, security, and automation best practices.
 
 
-# 🏗️ Overview
-This repository documents my production-grade homelab infrastructure which implements enterprise networking, security, and automation practices. 
-The setup demostrastes my practices in:
-
-- **Network Engineering**: VLAN segmentation with pfSense routing
-- **Virtualization**: Proxmox hypervisor with VM management
-- **Container Orchestration**: Docker with custom networking
-- **Security**: Zero-trust networking with Tailscale WireGuard VPN
-- **Automation**: Infrastructure as Code and CI/CD principles
+# Repository  Structure
+- **Apps** - List of all apps and services I currently use
+- **Media Server** - Jellyfin, *arr stack, and more
+- **Server Monitoring** - Graphs and Visualizations for Proxmox and more
+- **Storage** - Current storage and backup solution
 - **Service Management**: Self-hosted applications with reverse proxy
 
-## 🛠️ Technology Stack
+## Hardware
+### Servers and NAS
+**Main Rig (Proxmox)**
 
-### Core Infrastructure
-- **Hypervisor**: Proxmox VE on PN52 Ubuntu Server
-- **Network OS**: pfSense (virtualized router/firewall)
-- **Container Runtime**: Docker with custom bridge networks
-- **Remote Access**: Tailscale subnet routing with WireGuard
+This machine runs my Proxmox Server and serves as the central node for media storage, automation services (including the Arr stack), system monitoring, and other infrastructure components.
 
-### Network Architecture
-- **Management Network**: VLAN 100 (192.168.100.0/24)
-- **Storage Network**: VLAN 200 (10.0.0.0/24)  
-- **Docker Network**: Custom bridge (172.20.0.0/24)
-- **Physical Switch**: Cisco 2960-L with VLAN configuration
+- AMD EPCYC 7532
+- 96GB DDR4 3200MHZ ECC Server RAM
+- Intel 670p 512GB (Boot Drive)
+- SK Hynix Gold S31 1TB (Spare)
+- 2x Samsung 860 EVO 500GB (Dedicated VM's)
 
-### Self-Hosted Services
-- **Reverse Proxy**: Nginx Proxy Manager with automated SSL
-- **Container Management**: Portainer for Docker orchestration
-- **Version Control**: GitLab CE (this instance!)
-- **Network Storage**: Synology NAS with automated backups
+**ASUS PN52**
 
-## 🚀 Key Achievements
+This bare-metal Linux server acts as the primary gateway for both external and internal HTTP/HTTPS traffic. It utilizes NGINX as a reverse proxy to manage access to self-hosted applications and services, and runs Uptime Kuma for real-time availability monitoring and alerting.
+- AMD 5600H
+- 8GB DDR4 3200MHZ SODIMM RAM
+- Silicon Power SATA SSD 512GB
 
-- ✅ **Secure Remote Access**: Tailscale subnet routing from anywhere
-- ✅ **Zero-Downtime Services**: Docker health checks and restart policies
-- ✅ **Automated SSL**: Wildcard certificates with automatic renewal
-- ✅ **Network Segmentation**: Proper VLAN isolation with inter-VLAN routing
-- ✅ **Infrastructure Documentation**: Living documentation with architecture diagrams
-- ✅ **Backup Strategy**: Automated backups across VLANs
+**Synology DS920+
 
-## 📊 Network Topology
+This NAS is primarily used for file storage and for backing up both the Proxmox Server and the ASUS PN52 system.
 
-```
-Internet
-    ↓
-[Main Router] ←→ [Cisco Switch]
-    ↓                ↓
-VLAN 100         VLAN 200
-    ↓                ↓
-[Proxmox] ←→ [Synology NAS]
-    ↓
-[pfSense VM] ←→ [Docker Services]
-    ↓
-[Tailscale Gateway]
-```
+- Intel Celeron J4125 
+- 4GB DDR4
+- x2 Seagate Barracuda 4TB
+- x1 Seagate Barracuda 3TB
+- x1 Western Digital Blue 3TB
 
-## 📋 Skills Demonstrated
+## Network
 
-### Networking & Security
-- VLAN configuration and inter-VLAN routing
-- Firewall rule design and implementation
-- VPN implementation with subnet advertisement
-- SSL/TLS certificate management
-- Network troubleshooting and optimization
+- [Cisco Catalyst 2960L-24TS-LL Switch](https://www.cisco.com/c/en/us/support/switches/catalyst-2960-l-series-switches/series.html)
 
-### Systems & Virtualization
-- Linux server administration (Ubuntu)
-- Hypervisor management (Proxmox)
-- Virtual machine deployment and configuration
-- Container orchestration with Docker
-- Service discovery and reverse proxy setup
-
-### DevOps & Automation
-- Infrastructure documentation practices
-- Version control with self-hosted GitLab
-- Container deployment strategies
-- Backup automation and disaster recovery
-- Monitoring and health check implementation
-
-## 🔍 Repository Structure
-
-- `docs/` - Comprehensive infrastructure documentation
-- `configs/` - Sanitized configuration files and templates
-- `scripts/` - Automation scripts and deployment tools
-- `diagrams/` - Network topology and architecture diagrams
-
-## 📈 Current Status
-
-- ✅ Core infrastructure operational
-- ✅ Remote access via Tailscale configured
-- ✅ Docker services deployed and accessible
-- 🔄 Documentation in progress
-- 📋 Monitoring and automation planned
-
-## 🛠️ Quick Access
-
-- **GitLab**: https://gitlab.homelab.local
-- **Portainer**: https://portainer.homelab.local  
-- **Nginx Proxy Manager**: https://nginx.homelab.local
-
----
-
-> **Note**: This homelab demonstrates enterprise-grade practices adapted for a home environment. All configurations follow security best practices and are documented for educational and professional development purposes.
-
-**Last Updated**: July 2025
-```
+- [NETGEAR Orbi Pro WiFi 6 Mini Mesh](https://www.netgear.com/au/business/wifi/mesh/sxk30/)
