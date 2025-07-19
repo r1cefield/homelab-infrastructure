@@ -16,8 +16,10 @@ This repository contains the documentation and configuration of my production-gr
 
 This machine runs my Proxmox Server and serves as the central node for media storage, automation services (including the Arr stack), system monitoring, and other infrastructure components.
 
-- AMD EPCYC 7532
+- AMD EPYC 7532
 - 96GB DDR4 3200MHZ ECC Server RAM
+- NVIDIA 3060 12GB 
+- NVIDIA 1050 4GB
 - Intel 670p 512GB (Boot Drive)
 - SK Hynix Gold S31 1TB (Spare)
 - 2x Samsung 860 EVO 500GB (Dedicated VM's)
