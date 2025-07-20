@@ -46,3 +46,6 @@ This NAS is primarily used for file storage and for backing up both the Proxmox 
 - [Cisco Catalyst 2960L-24TS-LL Switch](https://www.cisco.com/c/en/us/support/switches/catalyst-2960-l-series-switches/series.html)
 
 - [NETGEAR Orbi Pro WiFi 6 Mini Mesh](https://www.netgear.com/au/business/wifi/mesh/sxk30/)
+
+## Network Diagram (Work in Progress)
+<img src="Homelab.png">
