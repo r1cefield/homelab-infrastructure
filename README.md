@@ -31,7 +31,7 @@ This bare-metal Linux server acts as the primary gateway for both external and i
 - 8GB DDR4 3200MHZ SODIMM RAM
 - Silicon Power SATA SSD 512GB
 
-**Synology DS920+
+**Synology DS920+**
 
 This NAS is primarily used for file storage and for backing up both the Proxmox Server and the ASUS PN52 system.
 
