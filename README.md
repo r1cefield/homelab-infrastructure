@@ -4,7 +4,7 @@ This repository contains the documentation and configuration of my production-gr
 
 
 # Repository  Structure
-- **Apps** - List of all apps and services I currently use
+- [**Apps**](apps/README.md) - List of all apps and services I currently use
 - **Media Server** - Jellyfin, *arr stack, and more
 - **Server Monitoring** - Graphs and Visualizations for Proxmox and more
 - **Storage** - Current storage and backup solution
