@@ -9,12 +9,12 @@
 Documentation and configuration files for my self-hosted homelab infrastructure, built around virtualization, network segmentation, and automated service deployment.
 
 
-# Repository  Structure
-- [**Apps**](apps/README.md) - List of all apps and services I currently use
-- **Media Server** - Jellyfin, *arr stack, and more
-- **Server Monitoring** - Graphs and Visualizations for Proxmox and more
-- **Storage** - Current storage and backup solution
-- **Service Management**: Self-hosted applications with reverse proxy
+## Repository Structure
+
+| Directory | Description |
+|---|---|
+| [**services/**](services/README.md) | Self-hosted applications and services |
+| [**infrastructure/**](infrastructure/README.md) | Network, monitoring, and storage configuration |
 
 ## Hardware
 ### Servers and NAS
