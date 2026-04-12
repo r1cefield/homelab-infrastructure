@@ -1,4 +1,10 @@
-# My Homelab Setup
+# Homelab Infrastructure
+
+![status](https://img.shields.io/badge/status-production-brightgreen?style=flat-square)
+![services](https://img.shields.io/badge/services-10%2B-2496ED?style=flat-square)
+![storage](https://img.shields.io/badge/storage-3.4TB-orange?style=flat-square)
+![hypervisor](https://img.shields.io/badge/hypervisor-Proxmox-744DA9?style=flat-square)
+![NAS](https://img.shields.io/badge/NAS-Synology_920%2B-0099CC?style=flat-square)
 
 This repository contains the documentation and configuration of my production-grade homelab infrastructure. It is designed with a focus on enterprise-level networking, security, and automation best practices.
 
@@ -14,26 +20,26 @@ This repository contains the documentation and configuration of my production-gr
 ### Servers and NAS
 **Main Rig (Proxmox)**
 
-This machine runs my Proxmox Server and serves as the central node for media storage, automation services (including the Arr stack), system monitoring, and other infrastructure components.
+Primary hypervisor running all production VMs. Features dual GPU passthrough for hardware-accelarated workloads.
 
-- AMD EPYC 7532
+- AMD EPYC 7532 (32C/64T)
 - 96GB DDR4 3200MHZ ECC Server RAM
-- NVIDIA 3060 12GB 
-- NVIDIA 1050 4GB
-- Intel 670p 512GB (Boot Drive)
-- SK Hynix Gold S31 1TB (Spare)
-- 2x Samsung 860 EVO 500GB (Dedicated VM's)
+- NVIDIA RTX 3060 12GB 
+- NVIDIA GTX 1050 4GB
+- Intel 670p 512GB (Boot)
+- SK Hynix Gold S31 1TB
+- 2x Samsung 860 EVO 500GB
 
 **ASUS PN52**
 
-This bare-metal Linux server acts as the primary gateway for both external and internal HTTP/HTTPS traffic. It utilizes NGINX as a reverse proxy to manage access to self-hosted applications and services, and runs Uptime Kuma for real-time availability monitoring and alerting.
+Bare-metal Ubuntu server acting as the primary network service host, handling reverse proxy, DNS filtering, and container management.
 - AMD 5600H
 - 8GB DDR4 3200MHZ SODIMM RAM
 - Silicon Power SATA SSD 512GB
 
 **Synology DS920+**
 
-This NAS is primarily used for file storage and for backing up both the Proxmox Server and the ASUS PN52 system.
+Primary NAS for media storage, system backups, and long-term metrics storage.
 
 - Intel Celeron J4125 
 - 4GB DDR4
@@ -42,10 +48,17 @@ This NAS is primarily used for file storage and for backing up both the Proxmox 
 - x1 Western Digital Blue 3TB
 
 ## Network
+**Switching & Routing**
 
-- [Cisco Catalyst 2960L-24TS-LL Switch](https://www.cisco.com/c/en/us/support/switches/catalyst-2960-l-series-switches/series.html)
+- [Cisco Catalyst 2960L-24TS-LL L2 Switch](https://www.cisco.com/c/en/us/support/switches/catalyst-2960-l-series-switches/series.html)
 
-- [NETGEAR Orbi Pro WiFi 6 Mini Mesh](https://www.netgear.com/au/business/wifi/mesh/sxk30/)
+- pfSense (Firewall & Inter-VLAN Routing)
 
-## Network Diagram (Work in Progress)
+**Wireless**
+- [2x UniFi U6-Lite (WiFi 6)](https://techspecs.ui.com/unifi/wifi/u6-lite)
+
+**VLANS**
+- VLAN 100 — Management & Services (192.168.100.0/24)
+- VLAN 200 — Media (10.0.0.0/24)
+## Network Diagram
 <img src="Homelab.png">
