@@ -6,8 +6,7 @@
 ![hypervisor](https://img.shields.io/badge/hypervisor-Proxmox-744DA9?style=flat-square)
 ![NAS](https://img.shields.io/badge/NAS-Synology_920%2B-0099CC?style=flat-square)
 
-Documentation and configuration files for my self-hosted homelab infrastructure, 
-built around virtualization, network segmentation, and automated service deployment..
+Documentation and configuration files for my self-hosted homelab infrastructure, built around virtualization, network segmentation, and automated service deployment.
 
 
 # Repository  Structure
