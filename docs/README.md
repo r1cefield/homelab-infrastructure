@@ -7,4 +7,3 @@ Guides, setup, logs, and troubleshooting notes for my homelab infrastructure.
 | [**services/**](services/) | Service-specific deployment guides |
 | [**networking/**](networking/) | Network configuration and VLAN setup |
 | [**troubleshooting/**](troubleshooting/) | Issues encountered and resolutions |
-Good?
