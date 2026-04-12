@@ -6,7 +6,8 @@
 ![hypervisor](https://img.shields.io/badge/hypervisor-Proxmox-744DA9?style=flat-square)
 ![NAS](https://img.shields.io/badge/NAS-Synology_920%2B-0099CC?style=flat-square)
 
-This repository contains the documentation and configuration of my production-grade homelab infrastructure. It is designed with a focus on enterprise-level networking, security, and automation best practices.
+Documentation and configuration files for my self-hosted homelab infrastructure, 
+built around virtualization, network segmentation, and automated service deployment..
 
 
 # Repository  Structure
