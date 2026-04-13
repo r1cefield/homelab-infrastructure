@@ -1,5 +1,6 @@
 # Documentation
-Guides, setup, logs, and troubleshooting notes for my homelab infrastructure.
+
+Guides, setup logs, and troubleshooting notes for my homelab infrastructure.
 
 | Directory | Description |
 |---|---|
