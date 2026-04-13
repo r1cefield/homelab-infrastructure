@@ -17,7 +17,12 @@ Open <b>PowerShell</b> on your main machine and run:
 ```powershell
 ssh-keygen -t ed25519 -C "your-machine-name"
 ```
-- Accept the default path `C:\Users\<username>\.ssh\id_ed25519` 
+<b>Syntax:</b>
+- `-t ed25519` — encryption algorithm, modern and secure
+- `-C "your-machine-name"` — label to identify the key
+
+When prompted:
+- Accept the default path `C:\Users\<username>\.ssh\id_ed25519`
 - Skip the passphrase by pressing Enter twice
 
 This generates two files:
@@ -28,6 +33,15 @@ This generates two files:
 ```powershell
 type $env:USERPROFILE\.ssh\id_ed25519.pub | ssh <user>@<server-ip> "mkdir -p ~/.ssh && cat >> ~/.ssh/authorized_keys"
 ```
+<b>Syntax:</b>
+
+- `type` - reads the public key file
+- `ssh <user>@<server-ip>` - connects to the server
+- `mkdir -p ~/.ssh` - creates the .ssh folder if it doesn't exist
+- `cat >> ~/.ssh/authorized_keys` - appends the key to the authorized keys file
+
+
+
 Enter your server password when prompted - this is the last time you'll need it.
 
 <b>Verify it works: </b>
@@ -35,6 +49,8 @@ Enter your server password when prompted - this is the last time you'll need it.
 ssh <user>@<server-ip>
 # Should connect without a password prompt
 ```
+
+><b>Note:</b> Repeat this step for every machine that needs SSH access to the server.
 
 ## Step 3 - Configure VS Code Remote-SSH
 
@@ -71,9 +87,11 @@ Add both keys:
 | `main` | Output of `cat $env:USERPROFILE\.ssh\id_ed25519.pub` on main machine |
 | `server` | Output of `cat ~/.ssh/id_ed25519.pub` on server |
 
+> <b>Note:</b> Add the public key of any machine that needs access to GitLab.
+
 ## Step 6 - Clone the Repo
 
-> <b>Note</b>: If your GItLab SSH port is non-standard, HTTP/HTTPS clone will fail — always use the SSH URL format below
+> <b>Note</b>: GitLab's web UI runs on ports 80/443 inside the container, but only the SSH port is exposed to the host. This means HTTP/HTTPS clone URLs will fail - always use the SSH format below.
 
 ```bash
 git clone ssh://git@<server-ip>:<gitlab-ssh-port>/<username>/<repo>.git
@@ -82,11 +100,12 @@ cd <repo>
 
 Accept the host fingerprint prompt by typing `yes`.
 
-## Step 7 — Configure Git Identify
+## Step 7 — Configure Git Identity
 
 ```bash
 git config --global user.name "Your name"
 git config --global user.email "your@email.com"
+
 ```
 ## Troubleshooting
 
@@ -96,3 +115,7 @@ git config --global user.email "your@email.com"
 | `gnutls_handshake() failed` | Trying HTTPS on an SSH-only port | Use `ssh://` URL format |
 | `Permission denied (publickey)` | SSH key not added to GitLab | Add public key in GitLab profile settings |
 | `remote rejected — protected branch` | Force pushing to a protected branch | Unprotect branch in GitLab → Settings → Repository |
+
+## Conclusion
+
+You can now edit and push to your self-hosted GitLab repo directly from VS Code. Open any folder on the server via `Remote-SSH: Connect to Host` and use the integrated terminal to commit and push changes.
