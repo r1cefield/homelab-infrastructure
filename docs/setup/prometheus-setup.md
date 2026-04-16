@@ -205,7 +205,7 @@ ls /etc/netplan/
 # Then edit whichever file is listed
 sudo nano /etc/netplan/<your-file>.yaml
 ```
-**Note:** The netplan filename varies depending on how your OS was installed. Use ls /etc/netplan/ to find the correct filename before editing.
+> **Note:** The netplan filename varies depending on how your OS was installed. Use ls /etc/netplan/ to find the correct filename before editing.
 
 ```yaml
 network:
@@ -215,9 +215,9 @@ network:
       dhcp4: true
       routes:
         - to: <target-subnet>      # e.g. 10.0.0.0/24
-          via: <router-ip>         # e.g. 192.168.100.188 (pfSense WAN IP)
+          via: <router-ip>         # IP of your router on the same subnet as this host
 ```
-**Note:** ens18 is the network interface name on this setup. Replace it with your actual interface name. Run ip link show to find yours.
+> **Note:** ens18 is the network interface name on this setup. Replace it with your actual interface name. Run ip link show to find yours.
 ```bash
 sudo netplan apply
 
